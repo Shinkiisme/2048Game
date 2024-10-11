@@ -10,7 +10,7 @@ int main(){
         std::string username;
         int size;
         int** bang;
-        bool afterWin = false;
+        bool afterWin;
         int point;
 
         if (isNewGame){
@@ -64,14 +64,14 @@ int main(){
             else if (button == 'w' || button == 'W' || button == 's' || button == 'S') merge_col(bang, size, button);
 
             else if (button == 'p' || button == 'P'){
+                system("cls");
                 save_game(bang, size, username);
-                isGameContinue = true;
                 return 0;
             }
 
             // Kết thúc trò chơi.
             else if (button == 'q' || button == 'Q'){
-                isGameContinue = true;
+                system("cls");
                 return 0;
             }
             
@@ -88,6 +88,8 @@ int main(){
         }
 
         if (win){
+            system("cls");
+
             char wantContinue;
 
             std::cout << "Ban da thang!\n";
