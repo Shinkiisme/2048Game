@@ -7,7 +7,7 @@ bool win_check(int** bang, int size, bool afterWin){
         
         for (int j = 0; j < size; ++j)
 
-            if (bang[i][j] == 8) return true;
+            if (bang[i][j] == 2048) return true;
 
     return false;
 }
