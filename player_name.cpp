@@ -17,6 +17,7 @@ std::string player_name(){
         char quit;
 
         do{
+            system("cls");
 
             std::cout << "Ban co muon tiep tuc tro choi cu khong ? [Y/N]\n";
             tiep_tuc = _getch();
@@ -69,12 +70,6 @@ std::string player_name(){
                 if (quit == 'y' || quit == 'Y') break;
 
             } while(!check_name);
-
-            std::ofstream file_add("players", std::ios::app);
-
-            file_add << username << '\n';
-
-            file_add.close();
         
         }
 

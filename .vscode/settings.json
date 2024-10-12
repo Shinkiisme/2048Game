@@ -57,6 +57,12 @@
         "xutility": "cpp",
         "fstream": "cpp",
         "string": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "filesystem": "cpp",
+        "algorithm": "cpp",
+        "chrono": "cpp",
+        "forward_list": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp"
     }
 }

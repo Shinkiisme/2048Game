@@ -8,6 +8,7 @@
 #include <fstream> // Thư viện để tương tác với file: đọc, ghi, lưu kết quả, ...
 #include <sstream>
 #include <string> // Thư viện để xử lý các xâu ký tự.
+#include <filesystem>
 
 
 void database(const std::string &file);
@@ -47,6 +48,6 @@ char control();
 int score(int** bang, int size);
 
 
-void leaderboard(int point, std::string username);
+void leaderboard(int point, std::string username, int size);
 
 void save_game(int** bang, int size, std::string username);

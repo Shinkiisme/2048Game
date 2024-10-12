@@ -66,12 +66,24 @@ int main(){
             else if (button == 'p' || button == 'P'){
                 system("cls");
                 save_game(bang, size, username);
+
+                for (int i = 0; i < size; ++i) 
+                    delete[] bang[i];
+
+                delete[] bang;
+
                 return 0;
             }
 
             // Kết thúc trò chơi.
             else if (button == 'q' || button == 'Q'){
                 system("cls");
+
+                for (int i = 0; i < size; ++i) 
+                    delete[] bang[i];
+
+                delete[] bang;
+
                 return 0;
             }
             
@@ -106,7 +118,7 @@ int main(){
             else{
                 system("cls");
 
-                leaderboard(point, username);
+                leaderboard(point, username, size);
             }
 
         }
@@ -118,11 +130,17 @@ int main(){
 
             _getch();
 
-            leaderboard(point, username);
+            leaderboard(point, username, size);
 
             isNewGame = true;
             isGameOver = true;
         }
+
+    for (int i = 0; i < size; ++i) 
+        delete[] bang[i];
+
+    delete[] bang;
+
     }
 
     return 0;
