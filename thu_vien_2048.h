@@ -1,3 +1,6 @@
+#ifndef thu_vien_2048
+#define thu_vien_2048
+
 #include <iostream>
 #include <iomanip> // Thư viện để căn chỉnh lề.
 #include <cmath> // Thư viện để tính toán.
@@ -9,6 +12,14 @@
 #include <sstream>
 #include <string> // Thư viện để xử lý các xâu ký tự.
 #include <filesystem>
+
+struct Node{
+    
+    int* game_state;
+    Node* next;
+    Node* prev;
+
+};
 
 
 void database(const std::string &file);
@@ -47,7 +58,15 @@ char control();
 // Khai báo hàm tính điểm.
 int score(int** bang, int size);
 
-
 void leaderboard(int point, std::string username, int size);
 
 void save_game(int** bang, int size, std::string username);
+
+void new_state(int** bang, int size, Node* &current_node);
+
+void undo(int** bang, int size, Node* &current_node);
+
+void redo(int** bang, int size, Node* &current_node);
+
+
+#endif

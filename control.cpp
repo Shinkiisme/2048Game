@@ -3,11 +3,11 @@
 char control(){
     char button;
 
-    std::cout << "n: new game\n" << "w: len\n" << "s: xuong\n" << "a: trai\n" << "d: phai\n" << "q: thoat\n" << "p: luu va thoat";
+    std::cout << "n: new game\n" << "w: len\n" << "s: xuong\n" << "a: trai\n" << "d: phai\n" << "u: undo\n" << "r: redo\n" << "q: thoat\n" << "p: luu va thoat";
     do{
         std::cout << "\nMoi ban nhap: ";
         button = _getch();
-    } while (button != 'n' && button != 'N' && button != 'w' && button != 'W' && button != 's' && button != 'S' && button != 'a' && button != 'A' && button != 'd' && button != 'D' && button != 'q' && button != 'Q' && button != 'p' && button != 'P');
+    } while (button != 'n' && button != 'N' && button != 'w' && button != 'W' && button != 's' && button != 'S' && button != 'a' && button != 'A' && button != 'd' && button != 'D' && button != 'q' && button != 'Q' && button != 'p' && button != 'P' && button != 'u' && button != 'U' && button != 'r' && button != 'R');
 
    return button;
 }

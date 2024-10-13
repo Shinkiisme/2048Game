@@ -12,6 +12,9 @@ int main(){
         int** bang;
         bool afterWin;
         int point;
+        Node* save_state = new Node;
+        save_state->next = nullptr;
+        Node* current_node = save_state;
 
         if (isNewGame){
             system("cls");
@@ -42,15 +45,26 @@ int main(){
             }
         }
 
+        current_node->game_state = new int[size * size];
+
+        for (int i = 0; i < size; ++i)
+
+            for (int j = 0; j < size; ++j)
+                current_node->game_state[i * size + j] = bang[i][j];
+
         system("cls");
 
         bool win = false;
         bool lose = false;
+        bool random = true;
 
-        while (!isGameOver){
-
-            rand_number(bang, size);
+        while (!isGameOver){ 
             
+            if (random)
+                rand_number(bang, size);
+            
+            else random = true;
+
             system("cls");
 
             point = score(bang, size);
@@ -59,9 +73,52 @@ int main(){
 
             char button = control();
 
-            if (button == 'a' || button == 'A' || button == 'd' || button == 'D') merge_row(bang, size, button);
-            
-            else if (button == 'w' || button == 'W' || button == 's' || button == 'S') merge_col(bang, size, button);
+            if (button == 'a' || button == 'A' || button == 'd' || button == 'D'){              
+                
+                new_state(bang, size, current_node);
+
+                merge_row(bang, size, button);
+
+            }
+
+            else if (button == 'w' || button == 'W' || button == 's' || button == 'S'){              
+                
+                new_state(bang, size, current_node);
+
+                merge_col(bang, size, button);
+
+            }       
+                
+
+            else if (button == 'u' || button == 'U'){
+
+                new_state(bang, size, current_node);
+
+                undo(bang, size, current_node);
+
+                system("cls");
+
+                point = score(bang, size);
+
+                print_grid(bang, size);
+
+                random = false;
+
+            }
+
+            else if (button == 'r' || button == 'R'){
+
+                redo(bang, size, current_node);
+
+                system("cls");
+
+                point = score(bang, size);
+
+                print_grid(bang, size);
+
+                random = false;
+
+            }
 
             else if (button == 'p' || button == 'P'){
                 system("cls");
@@ -140,6 +197,19 @@ int main(){
         delete[] bang[i];
 
     delete[] bang;
+
+    Node* delete_list = save_state;
+
+    while (delete_list != nullptr){
+        Node* next_node = delete_list->next;
+
+        delete[] delete_list->game_state;
+        delete delete_list;
+
+        delete_list = next_node;
+    }
+
+    delete save_state;
 
     }
 
