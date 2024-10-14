@@ -1,5 +1,11 @@
 #include "thu_vien_2048.h"
 
+int max(int a, int b){
+
+    return (a > b) ? a : b;
+
+}
+
 void leaderboard(int point, std::string username, int size){
 
     std::ifstream file("players");
@@ -43,34 +49,75 @@ void leaderboard(int point, std::string username, int size){
         scores[0] = point;
 
         for (int i = 1; i < line + 1; ++i)
+
             input >> players[i] >> scores[i];
 
         input.close();
 
-        for (int i = 0; i < line + 1; i++) {
-            int index = i;
-            
-            for (int j = i + 1; j < line + 1; j++)
-                if (scores[j] > scores[index])
-                    index = j;
+        bool isNewHighScore = false;
 
-            std::swap(scores[i], scores[index]);
-            std::swap(players[i], players[index]);
+        for (int i = 1; i < line + 1; ++i)
+            if (players[i] == players[0]){
+                scores[i] = max(scores[i], scores[0]);
+                isNewHighScore = true;
+            }
+
+        if (!isNewHighScore){
+            for (int i = 0; i < line + 1; i++) {
+                int index = i;
+                
+                for (int j = i + 1; j < line + 1; j++)
+                    if (scores[j] > scores[index])
+                        index = j;
+
+                std::swap(scores[i], scores[index]);
+                std::swap(players[i], players[index]);
+            }
+
+            std::ofstream output("leaderboard4x4", std::ios::out | std::ios::trunc);
+
+            std::cout << "BANG XEP HANG 4x4\n";
+
+            for (int i = 0; i < std::min(3, line + 1); ++i){
+                output << players[i] << ' ' << scores[i] << '\n';
+                std::cout << players[i] << '\t' << scores[i] << '\n';
+            }
+
+            output.close();
+
+            delete[] players;
+            delete[] scores;
+
         }
 
-        std::ofstream output("leaderboard4x4", std::ios::out | std::ios::trunc);
+        else{
 
-        std::cout << "BANG XEP HANG 4x4\n";
+            for (int i = 1; i < line + 1; i++) {
+                int index = i;
+                
+                for (int j = i + 1; j < line + 1; j++)
+                    if (scores[j] > scores[index])
+                        index = j;
 
-        for (int i = 0; i < std::min(3, line + 1); ++i){
-            output << players[i] << ' ' << scores[i] << '\n';
-            std::cout << players[i] << '\t' << scores[i] << '\n';
+                std::swap(scores[i], scores[index]);
+                std::swap(players[i], players[index]);
+            }
+
+            std::ofstream output("leaderboard4x4", std::ios::out | std::ios::trunc);
+
+            std::cout << "BANG XEP HANG 4x4\n";
+
+            for (int i = 1; i < std::min(3, line + 1); ++i){
+                output << players[i] << ' ' << scores[i] << '\n';
+                std::cout << players[i] << '\t' << scores[i] << '\n';
+            }
+
+            output.close();
+
+            delete[] players;
+            delete[] scores;
+
         }
-
-        output.close();
-
-        delete[] players;
-        delete[] scores;
     
     }
 
@@ -96,34 +143,75 @@ void leaderboard(int point, std::string username, int size){
         scores[0] = point;
 
         for (int i = 1; i < line + 1; ++i)
+
             input >> players[i] >> scores[i];
 
         input.close();
 
-        for (int i = 0; i < line + 1; i++) {
-            int index = i;
-            
-            for (int j = i + 1; j < line + 1; j++)
-                if (scores[j] > scores[index])
-                    index = j;
+        bool isNewHighScore = false;
 
-            std::swap(scores[i], scores[index]);
-            std::swap(players[i], players[index]);
+        for (int i = 1; i < line + 1; ++i)
+            if (players[i] == players[0]){
+                scores[i] = max(scores[i], scores[0]);
+                isNewHighScore = true;
+            }
+
+        if (!isNewHighScore){
+            for (int i = 0; i < line + 1; i++) {
+                int index = i;
+                
+                for (int j = i + 1; j < line + 1; j++)
+                    if (scores[j] > scores[index])
+                        index = j;
+
+                std::swap(scores[i], scores[index]);
+                std::swap(players[i], players[index]);
+            }
+
+            std::ofstream output("leaderboard6x6", std::ios::out | std::ios::trunc);
+
+            std::cout << "BANG XEP HANG 6x6\n";
+
+            for (int i = 0; i < std::min(3, line + 1); ++i){
+                output << players[i] << ' ' << scores[i] << '\n';
+                std::cout << players[i] << '\t' << scores[i] << '\n';
+            }
+
+            output.close();
+
+            delete[] players;
+            delete[] scores;
+
         }
 
-        std::ofstream output("leaderboard6x6", std::ios::out | std::ios::trunc);
+        else{
 
-        std::cout << "BANG XEP HANG 6x6\n";
+            for (int i = 1; i < line + 1; i++) {
+                int index = i;
+                
+                for (int j = i + 1; j < line + 1; j++)
+                    if (scores[j] > scores[index])
+                        index = j;
 
-        for (int i = 0; i < std::min(3, line + 1); ++i){
-            output << players[i] << ' ' << scores[i] << '\n';
-            std::cout << players[i] << '\t' << scores[i] << '\n';
+                std::swap(scores[i], scores[index]);
+                std::swap(players[i], players[index]);
+            }
+
+            std::ofstream output("leaderboard6x6", std::ios::out | std::ios::trunc);
+
+            std::cout << "BANG XEP HANG 6x6\n";
+
+            for (int i = 1; i < std::min(3, line + 1); ++i){
+                output << players[i] << ' ' << scores[i] << '\n';
+                std::cout << players[i] << '\t' << scores[i] << '\n';
+            }
+
+            output.close();
+
+            delete[] players;
+            delete[] scores;
+
         }
-
-        output.close();
-
-        delete[] players;
-        delete[] scores;
 
     }
 

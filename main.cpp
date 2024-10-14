@@ -183,7 +183,7 @@ int main(){
 
         }
 
-        else{
+        if (lose){
             system("cls");
 
             std::cout << "\nBan da thua!\n";
