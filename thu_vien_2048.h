@@ -64,6 +64,8 @@ void save_game(int** bang, int size, std::string username);
 
 void new_state(int** bang, int size, Node* &current_node);
 
+void save_before_undo(int** bang, int size, Node* &current_node);
+
 void undo(int** bang, int size, Node* &current_node);
 
 void redo(int** bang, int size, Node* &current_node);

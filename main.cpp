@@ -14,6 +14,7 @@ int main(){
         int point;
         Node* save_state = new Node;
         save_state->next = nullptr;
+        save_state->prev = nullptr;
         Node* current_node = save_state;
 
         if (isNewGame){
@@ -41,6 +42,8 @@ int main(){
                 size = size_input();
                 
                 bang = make_grid(size);
+
+                rand_number(bang, size);
                 
             }
         }
@@ -56,7 +59,7 @@ int main(){
 
         bool win = false;
         bool lose = false;
-        bool random = true;
+        bool random = false;
 
         while (!isGameOver){ 
             
@@ -92,7 +95,7 @@ int main(){
 
             else if (button == 'u' || button == 'U'){
 
-                new_state(bang, size, current_node);
+                save_before_undo(bang, size, current_node);
 
                 undo(bang, size, current_node);
 
