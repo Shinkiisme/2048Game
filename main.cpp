@@ -4,13 +4,13 @@ int main(){
     bool isNewGame = true;
     bool isGameOver = false;
     bool isGameContinue = false;
+    bool afterWin = false;
 
     while (!isGameContinue){
 
         std::string username;
         int size;
         int** bang;
-        bool afterWin;
         int point;
         Node* save_state = new Node;
         save_state->next = nullptr;
@@ -128,9 +128,21 @@ int main(){
                 save_game(bang, size, username);
 
                 for (int i = 0; i < size; ++i) 
-                    delete[] bang[i];
+                delete[] bang[i];
 
                 delete[] bang;
+
+                Node* delete_list = save_state;
+
+                while (delete_list != nullptr){
+                    Node* next_node = delete_list->next;
+
+                    delete[] delete_list->game_state;
+                    delete delete_list;
+
+                    delete_list = next_node;
+
+                }         
 
                 return 0;
             }
@@ -140,9 +152,21 @@ int main(){
                 system("cls");
 
                 for (int i = 0; i < size; ++i) 
-                    delete[] bang[i];
+                delete[] bang[i];
 
                 delete[] bang;
+
+                Node* delete_list = save_state;
+
+                while (delete_list != nullptr){
+                    Node* next_node = delete_list->next;
+
+                    delete[] delete_list->game_state;
+                    delete delete_list;
+
+                    delete_list = next_node;
+
+                }         
 
                 return 0;
             }
@@ -151,6 +175,7 @@ int main(){
             else if (button == 'n' || button == 'N'){
                 isNewGame = true;
                 isGameOver = true;
+                afterWin = false;
             }
 
             win = win_check(bang, size, afterWin);
@@ -179,6 +204,25 @@ int main(){
                 system("cls");
 
                 leaderboard(point, username, size);
+
+                
+                for (int i = 0; i < size; ++i) 
+                delete[] bang[i];
+
+                delete[] bang;
+
+                Node* delete_list = save_state;
+
+                while (delete_list != nullptr){
+                    Node* next_node = delete_list->next;
+
+                    delete[] delete_list->game_state;
+                    delete delete_list;
+
+                    delete_list = next_node;
+
+                }         
+
             }
 
         }
@@ -186,33 +230,32 @@ int main(){
         if (lose){
             system("cls");
 
-            std::cout << "\nBan da thua!\n";
+            std::cout << "Ban da thua!\n";
+
+            leaderboard(point, username, size);
 
             _getch();
 
-            leaderboard(point, username, size);
+            for (int i = 0; i < size; ++i) 
+                delete[] bang[i];
+
+            delete[] bang;
+
+            Node* delete_list = save_state;
+
+            while (delete_list != nullptr){
+                Node* next_node = delete_list->next;
+
+                delete[] delete_list->game_state;
+                delete delete_list;
+
+                delete_list = next_node;
+            
+            }
 
             isNewGame = true;
             isGameOver = true;
         }
-
-    for (int i = 0; i < size; ++i) 
-        delete[] bang[i];
-
-    delete[] bang;
-
-    Node* delete_list = save_state;
-
-    while (delete_list != nullptr){
-        Node* next_node = delete_list->next;
-
-        delete[] delete_list->game_state;
-        delete delete_list;
-
-        delete_list = next_node;
-    }
-
-    delete save_state;
 
     }
 

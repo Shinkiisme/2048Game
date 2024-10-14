@@ -11,18 +11,6 @@ void print_grid(int** bang, int size){
     // Khởi tạo biến đếm số chữ số lớn nhất.
     int chu_so = 1;
 
-    // Duyệt qua toàn bộ giá trị.
-    // for (int i = 0; i < size; ++i){
-
-    //     for (int j = 0; j < size; ++j){
-
-    //             // Tìm số chữ số lớn nhất của các giá trị trong bảng.
-    //             if (bang[i][j] == 0) continue;
-    //             chu_so = max(chu_so, floor(log10(bang[i][j])) + 1);
-    //     }
-    // }
-
-    // Duyệt qua bảng để in ra.
     for (int i = 0; i < size; ++i){
 
         for (int j = 0; j < size; ++j)
