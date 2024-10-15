@@ -1,7 +1,9 @@
 #include "thu_vien_2048.h"
 
+// Hàm gộp số theo cột.
 void merge_col(int** bang, int size, char button){
 
+    // Tương tự hàm gộp số theo hàng.
     for (int i = 0; i < size; ++i){
 
 

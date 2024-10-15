@@ -1,13 +1,27 @@
 #include "thu_vien_2048.h"
 
 int main(){
+
+    // Khởi tạo các biến:
+    // + Kiểm tra bắt đầu trò chơi mới
+    // + Kiểm tra kết thúc một trò chơi.
+    // + Kiểm tra tiếp tục trò chơi.
+    // + Kiểm tra chế độ chơi sau khi thắng.
     bool isNewGame = true;
     bool isGameOver = false;
     bool isGameContinue = false;
     bool afterWin = false;
 
+    // Vòng lặp duy trì trò chơi.
     while (!isGameContinue){
 
+        // Khởi tạo:
+        // + Tên người chơi.
+        // Khai báo:
+        // + Kích thước bảng chơi.
+        // + Mảng lưu bảng chơi.
+        // + Điểm.
+        // + Node đầu tiên.
         std::string username;
         int size;
         int** bang;
@@ -17,6 +31,7 @@ int main(){
         save_state->prev = nullptr;
         Node* current_node = save_state;
 
+        // Tạo trò chơi mới.
         if (isNewGame){
             system("cls");
             
@@ -32,12 +47,15 @@ int main(){
 
             system("cls");
 
+            // Lưu tên người chơi vào biến.
             username = player_name();
 
             system("cls");
 
+            // Kiểm tra lưu của người chơi cũ.
             bang = load_save(username, size);
 
+            // Nếu không có bản lưu cũ thì tạo mới.
             if (bang == nullptr){
                 size = size_input();
                 
@@ -48,6 +66,7 @@ int main(){
             }
         }
 
+        // Lưu bảng chơi vào node đầu tiên.
         current_node->game_state = new int[size * size];
 
         for (int i = 0; i < size; ++i)
@@ -57,12 +76,15 @@ int main(){
 
         system("cls");
 
+        // Biến kiểm tra thắng, thua, random số.
         bool win = false;
         bool lose = false;
         bool random = false;
 
+        // Vòng lặp duy trì khu vực bảng chơi cho tới khi thắng hoặc thua.
         while (!isGameOver){ 
             
+            // Nếu undo thì random = false, giúp không tạo số mới khi undo;
             if (random)
                 rand_number(bang, size);
             
@@ -70,14 +92,19 @@ int main(){
 
             system("cls");
 
+            // Tính và in ra điểm.
             point = score(bang, size);
-
+            
+            // In ra bảng chơi.
             print_grid(bang, size);
 
+            // Nhận và gán thao tác của người dùng vào biến.
             char button = control();
 
+            // Kiểm tra thao tác của người dùng để thực hiện các module hợp lí.
             if (button == 'a' || button == 'A' || button == 'd' || button == 'D'){              
                 
+                // Lưu bảng hiện tại rồi gộp hàng.
                 new_state(bang, size, current_node);
 
                 merge_row(bang, size, button);
@@ -86,6 +113,7 @@ int main(){
 
             else if (button == 'w' || button == 'W' || button == 's' || button == 'S'){              
                 
+                // Lưu bảng hiện tại rồi gộp cột.
                 new_state(bang, size, current_node);
 
                 merge_col(bang, size, button);
@@ -94,7 +122,8 @@ int main(){
                 
 
             else if (button == 'u' || button == 'U'){
-
+                
+                // Lưu lại bảng hiện tại nếu chưa được lưu rồi quay lại trạng thái bảng lúc trước.
                 save_before_undo(bang, size, current_node);
 
                 undo(bang, size, current_node);
@@ -111,6 +140,7 @@ int main(){
 
             else if (button == 'r' || button == 'R'){
 
+                // Về lại trạng thái trước khi undo.
                 redo(bang, size, current_node);
 
                 system("cls");
@@ -124,7 +154,10 @@ int main(){
             }
 
             else if (button == 'p' || button == 'P'){
+
                 system("cls");
+
+                // Thoát và lưu lại trạng thái hiện tại.
                 save_game(bang, size, username);
 
                 for (int i = 0; i < size; ++i) 
@@ -178,9 +211,11 @@ int main(){
                 afterWin = false;
             }
 
+            // Kiểm tra thắng, thua.
             win = win_check(bang, size, afterWin);
             lose = lose_check(bang, size);
 
+            // Thắng hoặc thua thì kết thúc trò chơi.
             if (win || lose) isGameOver = true;
         }
 
@@ -189,17 +224,20 @@ int main(){
 
             char wantContinue;
 
+            // Cho người chơi lựa chọn chơi tiếp hoặc dừng lại sau khi đã thắng.
             std::cout << "Ban da thang!\n";
             std::cout << "Ban co  muon choi tiep khong? [Y/N]";
 
             do wantContinue = _getch();
             while (wantContinue != 'y' && wantContinue != 'Y' && wantContinue != 'n' && wantContinue != 'N');
 
+            // Nếu chọn chơi tiếp thì tiếp tục trò chơi.
             if (wantContinue == 'y' || wantContinue == 'Y'){
                 afterWin = true;
                 isGameOver = false;
             }
 
+            // Nếu không thì lưu lại điểm và sắp xếp bảng xếp hạng, kết thúc trò chơi.
             else{
                 system("cls");
 
@@ -227,6 +265,7 @@ int main(){
 
         }
 
+        // Nếu thua thì lưu lại điểm và sắp xếp bảng xếp hạng, kết thúc trò chơi.
         if (lose){
             system("cls");
 
@@ -253,8 +292,16 @@ int main(){
             
             }
 
+            std::cout << "Nhan q de thoat tro choi!";
+            char out = _getch();
+
+            if (out == 'q' || out == 'Q'){ 
+                system("cls");
+
+                return 0;
+            
+            }
             isNewGame = true;
-            isGameOver = true;
         }
 
     }

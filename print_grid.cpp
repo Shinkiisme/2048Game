@@ -7,9 +7,6 @@ int number_digits(int n){
 
 // Hàm in ra bảng chơi của trò chơi.
 void print_grid(int** bang, int size){
-    
-    // Khởi tạo biến đếm số chữ số lớn nhất.
-    int chu_so = 1;
 
     for (int i = 0; i < size; ++i){
 
@@ -20,7 +17,7 @@ void print_grid(int** bang, int size){
 
         std::cout << '+' << '\n';
 
-        // In ra các giá trị của từng phần tử và biên trái phải ngăn cách giữa các cột theo số chữ số lớn nhất.
+        // In ra các giá trị của từng phần tử và biên trái phải ngăn cách giữa các cột theo số chữ số của ô hiện tại.
         for (int k = 0; k < size; ++k){
             int digit = (bang[i][k] == 0) ? 1 : number_digits(bang[i][k]);
 
