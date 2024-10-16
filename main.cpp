@@ -33,24 +33,24 @@ int main(){
 
         // Tạo trò chơi mới.
         if (isNewGame){
-            system("cls");
+            clear_screen();
             
             // Người chơi nhấn nút bất kì để bắt đầu trò chơi.
             std::cout << "        2048 GAME\n";
             std::cout << "PRESS ANY KEY TO CONTINUE!";
             _getch();
 
-            system("cls");
+            clear_screen();
 
             isNewGame = false;
             isGameOver = false;
 
-            system("cls");
+            clear_screen();
 
             // Lưu tên người chơi vào biến.
             username = player_name();
 
-            system("cls");
+            clear_screen();
 
             // Kiểm tra lưu của người chơi cũ.
             bang = load_save(username, size);
@@ -74,7 +74,7 @@ int main(){
             for (int j = 0; j < size; ++j)
                 current_node->game_state[i * size + j] = bang[i][j];
 
-        system("cls");
+        clear_screen();
 
         // Biến kiểm tra thắng, thua, random số.
         bool win = false;
@@ -90,7 +90,7 @@ int main(){
             
             else random = true;
 
-            system("cls");
+            clear_screen();
 
             // Tính và in ra điểm.
             point = score(bang, size);
@@ -128,7 +128,7 @@ int main(){
 
                 undo(bang, size, current_node);
 
-                system("cls");
+                clear_screen();
 
                 point = score(bang, size);
 
@@ -143,7 +143,7 @@ int main(){
                 // Về lại trạng thái trước khi undo.
                 redo(bang, size, current_node);
 
-                system("cls");
+                clear_screen();
 
                 point = score(bang, size);
 
@@ -155,7 +155,7 @@ int main(){
 
             else if (button == 'p' || button == 'P'){
 
-                system("cls");
+                clear_screen();
 
                 // Thoát và lưu lại trạng thái hiện tại.
                 save_game(bang, size, username);
@@ -182,7 +182,7 @@ int main(){
 
             // Kết thúc trò chơi.
             else if (button == 'q' || button == 'Q'){
-                system("cls");
+                clear_screen();
 
                 for (int i = 0; i < size; ++i) 
                 delete[] bang[i];
@@ -220,7 +220,7 @@ int main(){
         }
 
         if (win){
-            system("cls");
+            clear_screen();
 
             char wantContinue;
 
@@ -239,7 +239,7 @@ int main(){
 
             // Nếu không thì lưu lại điểm và sắp xếp bảng xếp hạng, kết thúc trò chơi.
             else{
-                system("cls");
+                clear_screen();
 
                 leaderboard(point, username, size);
 
@@ -267,7 +267,7 @@ int main(){
 
         // Nếu thua thì lưu lại điểm và sắp xếp bảng xếp hạng, kết thúc trò chơi.
         if (lose){
-            system("cls");
+            clear_screen();
 
             std::cout << "Ban da thua!\n";
 
@@ -296,7 +296,7 @@ int main(){
             char out = _getch();
 
             if (out == 'q' || out == 'Q'){ 
-                system("cls");
+                clear_screen();
 
                 return 0;
             

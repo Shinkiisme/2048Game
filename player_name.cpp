@@ -20,7 +20,7 @@ std::string player_name(){
 
         // Tiếp tục trò chơi cũ hay chơi mới.
         do{
-            system("cls");
+            clear_screen();
 
             std::cout << "Ban co muon tiep tuc tro choi cu khong ? [Y/N]\n";
             tiep_tuc = _getch();
@@ -32,7 +32,7 @@ std::string player_name(){
         if (tiep_tuc == 'n' || tiep_tuc == 'N'){
             
             do{
-                system("cls");
+                clear_screen();
 
                 std::cout << "\nKhong nhap ki tu ' '\n" << "Nhap ten nguoi choi: ";
                 std::getline(std::cin, username);
@@ -83,7 +83,7 @@ std::string player_name(){
             
             // Tên không được có kí tự ' ' và nhập đúng tên đã được lưu trong cơ sở dữ liệu.
             do{
-                system("cls");
+                clear_screen();
 
                 std::cout << "\nKhong nhap ki tu ' '\n" << "Nhap ten nguoi choi: ";
                 std::getline(std::cin, username);
@@ -133,7 +133,7 @@ std::string player_name(){
                 while (!(quit == 'y' || quit == 'Y' || quit == 'n' || quit == 'N'));
 
                 if (quit == 'y' || quit == 'Y'){
-                    system("cls");
+                    clear_screen();
                     break;
                 }
 

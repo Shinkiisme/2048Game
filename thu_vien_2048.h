@@ -13,7 +13,6 @@
 #include <string> // Thư viện để xử lý các xâu ký tự.
 #include <filesystem> // Thư viện để tạo thư mục lưu game.
 
-
 // Khai báo cấu trúc Node để sử dụng cho danh sách liên kết đôi.
 struct Node{
     
@@ -22,6 +21,9 @@ struct Node{
     Node* prev;
 
 };
+
+// Khai báo hàm xoá màn hình theo hệ điều hành.
+void clear_screen();
 
 // Khai báo hàm để kiểm tra xem đã tồn tại file lưu hay chưa, nếu chưa thì tạo mới.
 void database(const std::string &file);
@@ -84,6 +86,5 @@ void undo(int** bang, int size, Node* &current_node);
 
 // Khai báo hàm để thực hiện tính năng redo.
 void redo(int** bang, int size, Node* &current_node);
-
 
 #endif
