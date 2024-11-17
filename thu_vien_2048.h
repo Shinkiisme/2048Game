@@ -12,6 +12,7 @@
 #include <sstream> // Thư viện để chuyển đổi dữ liệu string thành int.
 #include <string> // Thư viện để xử lý các xâu ký tự.
 #include <filesystem> // Thư viện để tạo thư mục lưu game.
+#include <SFML/Graphics.hpp> // Thư viện tạo giao diện.
 
 // Khai báo cấu trúc Node để sử dụng cho danh sách liên kết đôi.
 struct Node{
@@ -41,7 +42,7 @@ int size_input();
 int** make_grid(int size);
 
 // Khai báo hàm in ra màn hình khu vực chơi.
-void print_grid(int** bang, int size);
+void print_grid(sf::RenderWindow &window, int** bang, int size);
 
 // Khai báo hàm tạo ra số mới.
 void rand_number(int** bang, int size);
@@ -58,7 +59,7 @@ bool win_check(int** bang, int size, bool afterWin);
 bool lose_check(int** bang, int size);
 
 // Khai báo hàm điều khiển của người chơi.
-char control();
+sf::Keyboard::Key control(sf::RenderWindow &window);
 
 // Khai báo hàm tính điểm.
 int score(int** bang, int size);

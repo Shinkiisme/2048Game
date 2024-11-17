@@ -84,139 +84,144 @@ int main(){
         // Vòng lặp duy trì khu vực bảng chơi cho tới khi thắng hoặc thua.
         while (!isGameOver){ 
             
-            // Nếu undo thì random = false, giúp không tạo số mới khi undo;
-            if (random)
-                rand_number(bang, size);
+            sf::RenderWindow window(sf::VideoMode(size * 100 + 100, size * 100), "2048 Game");
             
-            else random = true;
-
-            clear_screen();
-
-            // Tính và in ra điểm.
-            point = score(bang, size);
+            window.setFramerateLimit(60);
             
-            // In ra bảng chơi.
-            print_grid(bang, size);
-
-            // Nhận và gán thao tác của người dùng vào biến.
-            char button = control();
-
-            // Kiểm tra thao tác của người dùng để thực hiện các module hợp lí.
-            if (button == 'a' || button == 'A' || button == 'd' || button == 'D'){              
+            while (window.isOpen()){
                 
-                // Lưu bảng hiện tại rồi gộp hàng.
-                new_state(bang, size, current_node);
-
-                merge_row(bang, size, button);
-
-            }
-
-            else if (button == 'w' || button == 'W' || button == 's' || button == 'S'){              
+                // Nếu undo thì random = false, giúp không tạo số mới khi undo;
+                if (random)
+                    rand_number(bang, size);
                 
-                // Lưu bảng hiện tại rồi gộp cột.
-                new_state(bang, size, current_node);
+                else random = true;
 
-                merge_col(bang, size, button);
-
-            }       
-                
-
-            else if (button == 'u' || button == 'U'){
-                
-                // Lưu lại bảng hiện tại nếu chưa được lưu rồi quay lại trạng thái bảng lúc trước.
-                save_before_undo(bang, size, current_node);
-
-                undo(bang, size, current_node);
-
-                clear_screen();
-
+                // Tính và in ra điểm.
                 point = score(bang, size);
+                
+                // In ra bảng chơi.
+                print_grid(window, bang, size);
 
-                print_grid(bang, size);
+                // Nhận và gán thao tác của người dùng vào biến.
+                sf::Keyboard::Key button = control(window);
 
-                random = false;
+                // Kiểm tra thao tác của người dùng để thực hiện các module hợp lí.
+                if (button == sf::Keyboard::A || button == sf::Keyboard::D){              
+                    
+                    // Lưu bảng hiện tại rồi gộp hàng.
+                    new_state(bang, size, current_node);
 
+                    merge_row(bang, size, button);
+
+                }
+
+                else if (button == sf::Keyboard::W || button == sf::Keyboard::S){              
+                    
+                    // Lưu bảng hiện tại rồi gộp cột.
+                    new_state(bang, size, current_node);
+
+                    merge_col(bang, size, button);
+
+                }       
+                    
+
+                else if (button == sf::Keyboard::U){
+                    
+                    // Lưu lại bảng hiện tại nếu chưa được lưu rồi quay lại trạng thái bảng lúc trước.
+                    save_before_undo(bang, size, current_node);
+
+                    undo(bang, size, current_node);
+
+                    clear_screen();
+
+                    point = score(bang, size);
+
+                    print_grid(window, bang, size);
+
+                    random = false;
+
+                }
+
+                else if (button == sf::Keyboard::R){
+
+                    // Về lại trạng thái trước khi undo.
+                    redo(bang, size, current_node);
+
+                    clear_screen();
+
+                    point = score(bang, size);
+
+                    print_grid(window, bang, size);
+
+                    random = false;
+
+                }
+
+                else if (button == sf::Keyboard::P){
+
+                    clear_screen();
+
+                    // Thoát và lưu lại trạng thái hiện tại.
+                    save_game(bang, size, username);
+
+                    for (int i = 0; i < size; ++i) 
+                    delete[] bang[i];
+
+                    delete[] bang;
+
+                    Node* delete_list = save_state;
+
+                    while (delete_list != nullptr){
+                        Node* next_node = delete_list->next;
+
+                        delete[] delete_list->game_state;
+                        delete delete_list;
+
+                        delete_list = next_node;
+
+                    }         
+
+                    return 0;
+                }
+
+                // Kết thúc trò chơi.
+                else if (button == sf::Keyboard::Q){
+                    clear_screen();
+
+                    for (int i = 0; i < size; ++i) 
+                    delete[] bang[i];
+
+                    delete[] bang;
+
+                    Node* delete_list = save_state;
+
+                    while (delete_list != nullptr){
+                        Node* next_node = delete_list->next;
+
+                        delete[] delete_list->game_state;
+                        delete delete_list;
+
+                        delete_list = next_node;
+
+                    }         
+
+                    return 0;
+                }
+                
+                // Bắt đầu trò chơi mới.
+                else if (button == sf::Keyboard::N){
+                    isNewGame = true;
+                    isGameOver = true;
+                    afterWin = false;
+                }
+
+                // Kiểm tra thắng, thua.
+                win = win_check(bang, size, afterWin);
+                lose = lose_check(bang, size);
+
+                // Thắng hoặc thua thì kết thúc trò chơi.
+                if (win || lose) isGameOver = true;
             }
-
-            else if (button == 'r' || button == 'R'){
-
-                // Về lại trạng thái trước khi undo.
-                redo(bang, size, current_node);
-
-                clear_screen();
-
-                point = score(bang, size);
-
-                print_grid(bang, size);
-
-                random = false;
-
-            }
-
-            else if (button == 'p' || button == 'P'){
-
-                clear_screen();
-
-                // Thoát và lưu lại trạng thái hiện tại.
-                save_game(bang, size, username);
-
-                for (int i = 0; i < size; ++i) 
-                delete[] bang[i];
-
-                delete[] bang;
-
-                Node* delete_list = save_state;
-
-                while (delete_list != nullptr){
-                    Node* next_node = delete_list->next;
-
-                    delete[] delete_list->game_state;
-                    delete delete_list;
-
-                    delete_list = next_node;
-
-                }         
-
-                return 0;
-            }
-
-            // Kết thúc trò chơi.
-            else if (button == 'q' || button == 'Q'){
-                clear_screen();
-
-                for (int i = 0; i < size; ++i) 
-                delete[] bang[i];
-
-                delete[] bang;
-
-                Node* delete_list = save_state;
-
-                while (delete_list != nullptr){
-                    Node* next_node = delete_list->next;
-
-                    delete[] delete_list->game_state;
-                    delete delete_list;
-
-                    delete_list = next_node;
-
-                }         
-
-                return 0;
-            }
-            
-            // Bắt đầu trò chơi mới.
-            else if (button == 'n' || button == 'N'){
-                isNewGame = true;
-                isGameOver = true;
-                afterWin = false;
-            }
-
-            // Kiểm tra thắng, thua.
-            win = win_check(bang, size, afterWin);
-            lose = lose_check(bang, size);
-
-            // Thắng hoặc thua thì kết thúc trò chơi.
-            if (win || lose) isGameOver = true;
         }
 
         if (win){
