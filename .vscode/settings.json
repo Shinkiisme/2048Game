@@ -55,6 +55,14 @@
         "streambuf": "cpp",
         "text_encoding": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "cstdarg": "cpp",
+        "set": "cpp",
+        "filesystem": "cpp"
+    },
+    "cwd": "${workspaceFolder}/Source",
+    "code-runner.executorMap": {
+        "cpp": "C:/msys64/ucrt64/bin/g++ -o 2048 main.cpp Data.cpp DieuKhien.cpp GameLogic.cpp GiaiPhongBoNho.cpp GiaoDien.cpp NewGame.cpp UndoRedo.cpp -lsfml-graphics -lsfml-window -lsfml-system && 2048.exe",
+        "cppWithTerminal": "C:/msys64/ucrt64/bin/g++ -o 2048 main.cpp Data.cpp DieuKhien.cpp GameLogic.cpp GiaiPhongBoNho.cpp GiaoDien.cpp NewGame.cpp UndoRedo.cpp -lsfml-graphics -lsfml-window -lsfml-system && 2048.exe"
     }
 }
