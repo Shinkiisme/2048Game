@@ -1,0 +1,56 @@
+[
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\Game.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\Game.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/Game.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/Game.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\Data.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\Data.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/Data.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/Data.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\Controls.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\Controls.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/Controls.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/Controls.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\GameLogic.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\GameLogic.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/GameLogic.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/GameLogic.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\FreeMemory.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\FreeMemory.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/FreeMemory.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/FreeMemory.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\Graphics.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\Graphics.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/Graphics.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/Graphics.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\main.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\main.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/main.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\NewGame.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\NewGame.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/NewGame.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/NewGame.cpp.obj"
+},
+{
+  "directory": "C:/Users/LENOVO/Documents/24120121/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/2048Game.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\2048Game.dir\\src\\UndoRedo.cpp.obj -c C:\\Users\\LENOVO\\Documents\\24120121\\src\\UndoRedo.cpp",
+  "file": "C:/Users/LENOVO/Documents/24120121/src/UndoRedo.cpp",
+  "output": "CMakeFiles/2048Game.dir/src/UndoRedo.cpp.obj"
+}
+]
